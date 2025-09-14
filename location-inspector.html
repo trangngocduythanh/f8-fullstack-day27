@@ -4,9 +4,51 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>1.1. Location Properties Inspector</title>
-      <script type="module" crossorigin src="/f8-fullstack-day27/assets/main-wyCORUZl.js"></script>
-      <link rel="stylesheet" crossorigin href="/f8-fullstack-day27/assets/main-DOJbCp1w.css">
+      <script type="module" crossorigin src="/f8-fullstack-day27/assets/main-B74yTXDQ.js"></script>
+      <link rel="stylesheet" crossorigin href="/f8-fullstack-day27/assets/main-D1FldEum.css">
     </head>
-    <body>
+    <body>
+        <h1 class="heading">Tất cả thuộc tính của window.location</h1>
+        <table>
+            <thead>
+                <th>Property Name</th>
+                <th>Current Value</th>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>location.href</td>
+                    <td id="href"></td>
+                </tr>
+                <tr>
+                    <td>location.protocol</td>
+                    <td id="protocol"></td>
+                </tr>
+                <tr>
+                    <td>location.hostname</td>
+                    <td id="hostname"></td>
+                </tr>
+                <tr>
+                    <td>location.port</td>
+                    <td id="port"></td>
+                </tr>
+                <tr>
+                    <td>location.pathname</td>
+                    <td id="pathname"></td>
+                </tr>
+                <tr>
+                    <td>location.search</td>
+                    <td id="search"></td>
+                </tr>
+                <tr>
+                    <td>location.hash</td>
+                    <td id="hash"></td>
+                </tr>
+                <tr>
+                    <td>location.origin</td>
+                    <td id="origin"></td>
+                </tr>
+            </tbody>
+        </table>
+        <script src="./location-inspector.js"></script>
     </body>
 </html>
