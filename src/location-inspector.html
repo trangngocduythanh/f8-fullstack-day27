@@ -6,6 +6,68 @@
         <title>1.1. Location Properties Inspector</title>
     </head>
     <body>
+        <h1 class="heading">Tất cả thuộc tính của window.location</h1>
+        <table>
+            <thead>
+                <th>Property Name</th>
+                <th>Current Value</th>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>location.href</td>
+                    <td id="href"></td>
+                </tr>
+                <tr>
+                    <td>location.protocol</td>
+                    <td id="protocol"></td>
+                </tr>
+                <tr>
+                    <td>location.hostname</td>
+                    <td id="hostname"></td>
+                </tr>
+                <tr>
+                    <td>location.port</td>
+                    <td id="port"></td>
+                </tr>
+                <tr>
+                    <td>location.pathname</td>
+                    <td id="pathname"></td>
+                </tr>
+                <tr>
+                    <td>location.search</td>
+                    <td id="search"></td>
+                </tr>
+                <tr>
+                    <td>location.hash</td>
+                    <td id="hash"></td>
+                </tr>
+                <tr>
+                    <td>location.origin</td>
+                    <td id="origin"></td>
+                </tr>
+            </tbody>
+        </table>
         <script type="module" src="./main.js"></script>
+        <script>
+            const href = document.querySelector("#href");
+            const protocol = document.querySelector("#protocol");
+            const hostname = document.querySelector("#hostname");
+            const port = document.querySelector("#port");
+            const pathname = document.querySelector("#pathname");
+            const search = document.querySelector("#search");
+            const hash = document.querySelector("#hash");
+            const origin = document.querySelector("#origin");
+
+            console.log(href);
+
+            href.textContent = location.href;
+            protocol.textContent = location.protocol;
+            hostname.textContent = location.hostname;
+            port.textContent = location.port;
+            pathname.textContent = location.pathname;
+            search.textContent = location.search;
+            hash.textContent = location.hash;
+            origin.textContent = location.origin;
+        </script>
     </body>
 </html>

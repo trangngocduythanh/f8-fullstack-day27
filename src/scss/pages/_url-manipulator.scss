@@ -1,0 +1,62 @@
+#form {
+    margin: 10px auto 0;
+    width: 360px;
+    padding: 10px;
+}
+
+label {
+    cursor: pointer;
+    margin-top: 16px;
+    display: block;
+    color: #333;
+    font-size: 1.8rem;
+}
+
+label:first-of-type {
+    margin-top: 0;
+}
+
+select {
+    padding: 4px 6px;
+    margin-top: 6px;
+    width: 100%;
+    border-radius: 6px;
+    border: 1px solid #ddd;
+
+    &:focus {
+        outline: 1px solid rgb(55, 154, 230);
+    }
+}
+
+input {
+    color: #626161;
+    border: 1px solid #ddd;
+    padding: 4px 6px;
+    margin-top: 6px;
+    width: 100%;
+    border-radius: 6px;
+
+    &:focus {
+        outline: 1px solid rgb(55, 154, 230);
+    }
+}
+
+.btn-wrap {
+    margin-top: 16px;
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+
+    .btn {
+        background: rgb(55, 154, 230);
+        color: #fff;
+        display: block;
+        width: 90px;
+        height: 32px;
+        border-radius: 6px;
+
+        &:hover {
+            opacity: 0.8;
+        }
+    }
+}

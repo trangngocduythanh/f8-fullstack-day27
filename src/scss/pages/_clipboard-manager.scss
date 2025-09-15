@@ -1,0 +1,41 @@
+body {
+    &:has(#copy-text) {
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 40px;
+    }
+}
+
+#copy-text,
+#paste-text {
+    padding: 10px;
+    width: 400px;
+    height: 200px;
+    border-radius: 4px;
+    resize: none;
+    border: 1px solid #ccc;
+
+    &:focus {
+        border: 1px solid #007bff;
+        outline: none;
+    }
+}
+
+#copy-btn,
+#paste-btn {
+    margin: 20px auto 0;
+    display: block;
+    text-align: center;
+    line-height: 1;
+    width: 90px;
+    height: 36px;
+    border-radius: 10px;
+    background: #333;
+    color: #fff;
+
+    &:hover {
+        opacity: 0.8;
+    }
+}

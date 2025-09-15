@@ -6,6 +6,76 @@
         <title>1.2. URL Manipulation Tool</title>
     </head>
     <body>
+        <form action="" id="form">
+            <label for="protocol">Chọn giao thức</label>
+            <select name="protocol" id="protocol">
+                <option value="http:">http</option>
+                <option value="https:">https</option>
+            </select>
+
+            <label for="hostname">Hostname</label>
+            <input
+                type="text"
+                id="hostname"
+                placeholder="Enter hostname..."
+                required
+            />
+
+            <label for="port">Port</label>
+            <input type="number" id="port" placeholder="Enter port..." />
+
+            <label for="pathname">Pathname</label>
+            <input type="text" id="pathname" placeholder="Enter pathname..." />
+
+            <label for="search">Search/Query</label>
+            <input type="text" id="search" placeholder="Enter search..." />
+
+            <label for="hash">Hash</label>
+            <input type="text" id="hash" placeholder="Enter hash..." />
+
+            <div class="btn-wrap">
+                <button class="btn navigate-btn">Navigate</button>
+                <button class="btn replace-btn">Replace</button>
+                <button class="btn reload-btn">Reload</button>
+            </div>
+        </form>
         <script type="module" src="./main.js"></script>
+        <script>
+            const protocol = document.querySelector("#protocol");
+            const hostname = document.querySelector("#hostname");
+            const port = document.querySelector("#port");
+            const pathname = document.querySelector("#pathname");
+            const search = document.querySelector("#search");
+            const hash = document.querySelector("#hash");
+            const navigateBtn = document.querySelector(".navigate-btn");
+            const replaceBtn = document.querySelector(".replace-btn");
+            const reloadBtn = document.querySelector(".reload-btn");
+            const form = document.querySelector("#form");
+
+            // Hàm lấy ra đường dẫn
+            function getURL() {
+                return `${protocol.value}//${hostname.value}${
+                    port.value ? ":" + port.value : ""
+                }${pathname.value ? "/" + pathname.value : "/"}${
+                    search.value.trim() ? "?" + search.value : ""
+                }${hash.value.trim() ? "#" + hash.value : ""}`;
+            }
+
+            form.addEventListener("submit", (e) => {
+                e.preventDefault();
+            });
+
+            navigateBtn.addEventListener("click", () => {
+                location.assign(getURL());
+            });
+
+            replaceBtn.addEventListener("click", () => {
+                location.replace(getURL());
+            });
+
+            reloadBtn.addEventListener("click", () => {
+                location.reload();
+            });
+        </script>
     </body>
 </html>

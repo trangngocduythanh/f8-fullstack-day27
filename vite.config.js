@@ -3,6 +3,7 @@ import { ViteEjsPlugin } from "vite-plugin-ejs";
 import path from "path";
 
 export default defineConfig({
+    base: "/f8-fullstack-day27",
     root: "src",
     publicDir: "../public",
     build: {

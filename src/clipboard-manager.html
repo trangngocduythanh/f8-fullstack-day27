@@ -6,6 +6,38 @@
         <title>3.1. Clipboard Manager</title>
     </head>
     <body>
+        <div class="copy-block">
+            <textarea
+                name=""
+                id="copy-text"
+                placeholder="Write something..."
+            ></textarea>
+            <button id="copy-btn">Copy</button>
+        </div>
+        <div class="paste-block">
+            <textarea
+                name=""
+                id="paste-text"
+                placeholder="Write something..."
+            ></textarea>
+            <button id="paste-btn">Paste</button>
+        </div>
         <script type="module" src="./main.js"></script>
+        <script>
+            const copyText = document.querySelector("#copy-text");
+            const copyBtn = document.querySelector("#copy-btn");
+            const pasteText = document.querySelector("#paste-text");
+            const pasteBtn = document.querySelector("#paste-btn");
+
+            copyBtn.addEventListener("click", () => {
+                navigator.clipboard.writeText(copyText.value);
+            });
+
+            pasteBtn.addEventListener("click", () => {
+                navigator.clipboard
+                    .readText()
+                    .then((data) => (pasteText.value = data));
+            });
+        </script>
     </body>
 </html>
