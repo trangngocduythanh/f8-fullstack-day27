@@ -68,8 +68,8 @@
             });
 
             // Mặc định truy cập lần đầu hoặc tải lại trang là ở trang home
+            history.replaceState(null, null, "home");
             render("home");
-            history.pushState(null, null, "home");
 
             window.addEventListener("popstate", () => {
                 const page =
