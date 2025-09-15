@@ -24,6 +24,21 @@
             ></textarea>
             <button id="paste-btn">Paste</button>
         </div>
-        <script src="./clipboard-manager.js"></script>
+        <script>
+            const copyText = document.querySelector("#copy-text");
+            const copyBtn = document.querySelector("#copy-btn");
+            const pasteText = document.querySelector("#paste-text");
+            const pasteBtn = document.querySelector("#paste-btn");
+
+            copyBtn.addEventListener("click", () => {
+                navigator.clipboard.writeText(copyText.value);
+            });
+
+            pasteBtn.addEventListener("click", () => {
+                navigator.clipboard
+                    .readText()
+                    .then((data) => (pasteText.value = data));
+            });
+        </script>
     </body>
 </html>

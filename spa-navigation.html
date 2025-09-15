@@ -25,6 +25,59 @@
             </ul>
         </nav>
         <div class="content"></div>
-        <script src="./spa-navigation.js"></script>
+        <script>
+            const nav = document.querySelector(".nav");
+            const links = document.querySelectorAll(".nav a");
+            const content = document.querySelector(".content");
+
+            const pages = {
+                home: "Chào mừng đến với trang chủ! Đây là nội dung của trang Home.",
+                about: "Thông tin về chúng tôi. Chúng tôi là công ty chuyên về công nghệ web.",
+                services:
+                    "Các dịch vụ của chúng tôi: Thiết kế web, Lập trình ứng dụng, Tư vấn công nghệ.",
+                contact:
+                    "Liên hệ với chúng tôi: Email: contact@example.com, Phone: 0123456789",
+            };
+
+            function render(page) {
+                // Cập nhật nội dung content
+                content.innerHTML = "";
+
+                const h2 = document.createElement("h2");
+                h2.textContent = pages[page];
+
+                const p = document.createElement("p");
+                p.textContent = `History Length: ${history.length}`;
+
+                content.append(h2, p);
+                // Cập nhật class active
+                links.forEach((link) =>
+                    link.classList.toggle("active", link.dataset.page === page)
+                );
+            }
+
+            links.forEach((link) => {
+                link.addEventListener("click", (e) => {
+                    e.preventDefault();
+
+                    // Thay đổi đường dẫn khi nhấn
+                    history.pushState(null, null, link.dataset.page);
+                    // Render page khi nhấn vào các nút ở .nav
+                    render(link.dataset.page);
+                });
+            });
+
+            // Mặc định truy cập lần đầu hoặc tải lại trang là ở trang home
+            render("home");
+            history.pushState(null, null, "home");
+
+            window.addEventListener("popstate", () => {
+                const page =
+                    location.pathname.replace("/f8-fullstack-day27/", "") ||
+                    "home";
+
+                render(page);
+            });
+        </script>
     </body>
 </html>

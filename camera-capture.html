@@ -11,6 +11,33 @@
         <img style="width: 100%" src="" alt="" id="img" />
         <button id="capture">Capture</button>
         <video style="width: 100%" src="" id="video" autoplay></video>
-        <script src="./camera-capture.js"></script>
+        <script>
+            const video = document.querySelector("#video");
+            const imgTag = document.querySelector("#img");
+            const capture = document.querySelector("#capture");
+            const canvas = document.createElement("canvas");
+
+            canvas.width = 640;
+            canvas.height = 480;
+
+            // navigator.mediaDevices
+            //     .getUserMedia({
+            //         video: true,
+            //     })
+            //     .then((stream) => {
+            //         video.srcObject = stream;
+            //         video.play();
+            //     });
+            video.src = "./videos/test.mp4";
+            video.play();
+
+            capture.addEventListener("click", () => {
+                const ctx = canvas.getContext("2d");
+                ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+
+                const image = canvas.toDataURL("image/jpeg");
+                imgTag.src = image;
+            });
+        </script>
     </body>
 </html>

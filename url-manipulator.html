@@ -51,6 +51,42 @@
                 <button class="btn reload-btn">Reload</button>
             </div>
         </form>
-        <script src="./url-manipulator.js"></script>
+        <script>
+            const protocol = document.querySelector("#protocol");
+            const hostname = document.querySelector("#hostname");
+            const port = document.querySelector("#port");
+            const pathname = document.querySelector("#pathname");
+            const search = document.querySelector("#search");
+            const hash = document.querySelector("#hash");
+            const navigateBtn = document.querySelector(".navigate-btn");
+            const replaceBtn = document.querySelector(".replace-btn");
+            const reloadBtn = document.querySelector(".reload-btn");
+            const form = document.querySelector("#form");
+
+            // Hàm lấy ra đường dẫn
+            function getURL() {
+                return `${protocol.value}//${hostname.value}${
+                    port.value ? ":" + port.value : ""
+                }${pathname.value ? "/" + pathname.value : "/"}${
+                    search.value.trim() ? "?" + search.value : ""
+                }${hash.value.trim() ? "#" + hash.value : ""}`;
+            }
+
+            form.addEventListener("submit", (e) => {
+                e.preventDefault();
+            });
+
+            navigateBtn.addEventListener("click", () => {
+                location.assign(`{getURL()}`);
+            });
+
+            replaceBtn.addEventListener("click", () => {
+                location.replace(`${getURL()}`);
+            });
+
+            reloadBtn.addEventListener("click", () => {
+                location.reload();
+            });
+        </script>
     </body>
 </html>
