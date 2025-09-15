@@ -66,9 +66,8 @@
                 });
             });
 
-            // Mặc định truy cập lần đầu hoặc tải lại trang là ở trang home
-            render("home");
-            history.pushState(null, null, "home");
+            // history.replaceState(null, null, location.pathname.);
+            // render("home");
 
             window.addEventListener("popstate", () => {
                 const page =
