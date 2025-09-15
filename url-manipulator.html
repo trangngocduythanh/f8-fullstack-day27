@@ -4,13 +4,13 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>1.2. URL Manipulation Tool</title>
-      <script type="module" crossorigin src="/f8-fullstack-day27/assets/main-B74yTXDQ.js"></script>
-      <link rel="stylesheet" crossorigin href="/f8-fullstack-day27/assets/main-D1FldEum.css">
+      <script type="module" crossorigin src="/f8-fullstack-day27/assets/main-CeRjPfn4.js"></script>
+      <link rel="stylesheet" crossorigin href="/f8-fullstack-day27/assets/main-W3uYwu2U.css">
     </head>
     <body>
         <form action="" id="form">
             <label for="protocol">Chọn giao thức</label>
-            <select name="protocol" id="protocol" required>
+            <select name="protocol" id="protocol">
                 <option value="http:">http</option>
                 <option value="https:">https</option>
             </select>
@@ -27,23 +27,13 @@
             <input type="number" id="port" placeholder="Enter port..." />
 
             <label for="pathname">Pathname</label>
-            <input
-                type="text"
-                id="pathname"
-                placeholder="Enter pathname..."
-                required
-            />
+            <input type="text" id="pathname" placeholder="Enter pathname..." />
 
             <label for="search">Search/Query</label>
-            <input
-                type="text"
-                id="search"
-                placeholder="Enter search..."
-                required
-            />
+            <input type="text" id="search" placeholder="Enter search..." />
 
             <label for="hash">Hash</label>
-            <input type="text" id="hash" placeholder="Enter hash..." required />
+            <input type="text" id="hash" placeholder="Enter hash..." />
 
             <div class="btn-wrap">
                 <button class="btn navigate-btn">Navigate</button>
@@ -77,11 +67,11 @@
             });
 
             navigateBtn.addEventListener("click", () => {
-                location.assign(`{getURL()}`);
+                location.assign(getURL());
             });
 
             replaceBtn.addEventListener("click", () => {
-                location.replace(`${getURL()}`);
+                location.replace(getURL());
             });
 
             reloadBtn.addEventListener("click", () => {

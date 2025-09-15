@@ -4,39 +4,85 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>3.2. Camera Capture App</title>
-      <script type="module" crossorigin src="/f8-fullstack-day27/assets/main-B74yTXDQ.js"></script>
-      <link rel="stylesheet" crossorigin href="/f8-fullstack-day27/assets/main-D1FldEum.css">
+      <script type="module" crossorigin src="/f8-fullstack-day27/assets/main-CeRjPfn4.js"></script>
+      <link rel="stylesheet" crossorigin href="/f8-fullstack-day27/assets/main-W3uYwu2U.css">
     </head>
     <body>
-        <img style="width: 100%" src="" alt="" id="img" />
-        <button id="capture">Capture</button>
-        <video style="width: 100%" src="" id="video" autoplay></video>
+        <div class="media-block">
+            <video src="" id="video" autoplay></video>
+            <img src="" alt="Ảnh chụp khung hình" id="img" draggable="false" />
+        </div>
+        <div class="btn-block">
+            <button id="start-btn" type="button">Start Camera</button>
+            <button id="capture-btn" type="button">Take Photo</button>
+            <button id="stop-btn" type="button">Stop Camera</button>
+            <button id="download-btn" type="button">Download Photo</button>
+        </div>
         <script>
             const video = document.querySelector("#video");
             const imgTag = document.querySelector("#img");
-            const capture = document.querySelector("#capture");
+            const startBtn = document.querySelector("#start-btn");
+            const captureBtn = document.querySelector("#capture-btn");
+            const stopBtn = document.querySelector("#stop-btn");
+            const downloadBtn = document.querySelector("#download-btn");
             const canvas = document.createElement("canvas");
 
-            canvas.width = 640;
-            canvas.height = 480;
+            // Disable các nút captureBtn, downloadBtn và stopBtn khi camera chưa bật
+            captureBtn.disabled = true;
+            downloadBtn.disabled = true;
+            stopBtn.disabled = true;
 
-            // navigator.mediaDevices
-            //     .getUserMedia({
-            //         video: true,
-            //     })
-            //     .then((stream) => {
-            //         video.srcObject = stream;
-            //         video.play();
-            //     });
-            video.src = "./videos/test.mp4";
-            video.play();
+            startBtn.addEventListener("click", () => {
+                navigator.mediaDevices
+                    .getUserMedia({ video: true })
+                    .then((stream) => {
+                        video.srcObject = stream;
+                        video.play();
+                        // Enable các nút captureBtn và stopBtn khi đã bật camera thành công
+                        captureBtn.disabled = false;
+                        stopBtn.disabled = false;
+                    })
+                    .catch((err) => {
+                        alert("Không thể truy cập camera: " + err.message);
+                    });
+            });
 
-            capture.addEventListener("click", () => {
+            captureBtn.addEventListener("click", () => {
+                // Dùng kích thước hiển thị của phần tử video (400x225 do CSS)
+                const rect = video.getBoundingClientRect();
+                canvas.width = Math.round(rect.width);
+                canvas.height = Math.round(rect.height);
+
                 const ctx = canvas.getContext("2d");
                 ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
 
-                const image = canvas.toDataURL("image/jpeg");
+                const image = canvas.toDataURL("image/png");
                 imgTag.src = image;
+                // Enable nút downloadBtn khi đã chụp ảnh xông
+                downloadBtn.disabled = false;
+            });
+
+            stopBtn.addEventListener("click", () => {
+                const stream = video.srcObject;
+                if (stream) {
+                    stream.getTracks().forEach((track) => track.stop());
+                }
+                video.srcObject = null; // giải phóng và tránh dùng nhầm stream cũ
+                // Disable các nút captureBtn, downloadBtn và stopBtn khi dừng camera
+                captureBtn.disabled = true;
+                downloadBtn.disabled = true;
+                stopBtn.disabled = true;
+            });
+
+            downloadBtn.addEventListener("click", () => {
+                // Tạo element <a> để download
+                const link = document.createElement("a");
+                // Đặt tên file download
+                link.download = "photo.png";
+                // Chuyển canvas thành data URL để tạo link download
+                link.href = canvas.toDataURL("image/png");
+                // Tự động click để trigger download
+                link.click();
             });
         </script>
     </body>
