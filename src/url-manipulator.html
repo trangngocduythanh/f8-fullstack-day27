@@ -65,7 +65,7 @@
             const form = document.querySelector("#form");
 
             function normalizePathname(path) {
-                if (!path) return "/"; // Nếu trống thì trả về "/"
+                if (!path) return ""; // Nếu trống thì trả về ""
                 path = path.trim();
                 if (path === "/") return "/"; // Nếu người dùng chỉ nhập "/" thì giữ nguyên
                 return path.startsWith("/") ? path : "/" + path; // Nếu thiếu "/" thì thêm vào đầu
