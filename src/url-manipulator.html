@@ -17,21 +17,33 @@
             <input
                 type="text"
                 id="hostname"
-                placeholder="Enter hostname..."
+                placeholder="ví dụ: google.com"
                 required
             />
 
             <label for="port">Port</label>
-            <input type="number" id="port" placeholder="Enter port..." />
+            <input
+                type="number"
+                id="port"
+                placeholder="ví dụ: 3000, có thể để trống"
+            />
 
             <label for="pathname">Pathname</label>
-            <input type="text" id="pathname" placeholder="Enter pathname..." />
+            <input
+                type="text"
+                id="pathname"
+                placeholder="ví dụ: /products/detail"
+            />
 
             <label for="search">Search/Query</label>
-            <input type="text" id="search" placeholder="Enter search..." />
+            <input
+                type="text"
+                id="search"
+                placeholder="ví dụ: ?id=123&name=abc"
+            />
 
             <label for="hash">Hash</label>
-            <input type="text" id="hash" placeholder="Enter hash..." />
+            <input type="text" id="hash" placeholder="ví dụ: #section1" />
 
             <div class="btn-wrap">
                 <button class="btn navigate-btn">Navigate</button>
@@ -52,13 +64,34 @@
             const reloadBtn = document.querySelector(".reload-btn");
             const form = document.querySelector("#form");
 
+            function normalizePathname(path) {
+                if (!path) return "/"; // Nếu trống thì trả về "/"
+                path = path.trim();
+                if (path === "/") return "/"; // Nếu người dùng chỉ nhập "/" thì giữ nguyên
+                return path.startsWith("/") ? path : "/" + path; // Nếu thiếu "/" thì thêm vào đầu
+            }
+
+            function normalizeSearch(q) {
+                if (!q) return "";
+                q = q.trim();
+                if (!q) return "";
+                return q.startsWith("?") ? q : "?" + q;
+            }
+
+            function normalizeHash(h) {
+                if (!h) return "";
+                h = h.trim();
+                if (!h) return "";
+                return h.startsWith("#") ? h : "#" + h;
+            }
+
             // Hàm lấy ra đường dẫn
             function getURL() {
-                return `${protocol.value}//${hostname.value}${
+                return `${protocol.value}//${hostname.value.trim()}${
                     port.value ? ":" + port.value : ""
-                }${pathname.value ? "/" + pathname.value : "/"}${
-                    search.value.trim() ? "?" + search.value : ""
-                }${hash.value.trim() ? "#" + hash.value : ""}`;
+                }${normalizePathname(pathname.value)}${normalizeSearch(
+                    search.value
+                )}${normalizeHash(hash.value)}`;
             }
 
             form.addEventListener("submit", (e) => {
